@@ -30,15 +30,11 @@ public class Curso extends SimState{
 		CrearProfesores();
 		CrearAlumnos();
 		for (Profesores P : Profesores) {
-			yard.setObjectLocation(P,
-					new Double2D( yard.getWidth()*0.5+random.nextDouble()-0.5,
-							yard.getHeight()*0.5+random.nextDouble()-0.5));
+			yard.setObjectLocation(P,P.getPosicion());					
 			schedule.scheduleRepeating(P);
 		}
 		for (Alumnos A : Alumnos) {
-			yard.setObjectLocation(A,
-					new Double2D( yard.getWidth()*0.5+random.nextDouble()-0.5,
-							yard.getHeight()*0.5+random.nextDouble()-0.5));
+			yard.setObjectLocation(A,A.getPosicion());
 			schedule.scheduleRepeating(A);
 		}
 		
@@ -46,14 +42,14 @@ public class Curso extends SimState{
 
 	private void CrearAlumnos() {
 		for (int i = 0; i < CONSTANTES.Alumnos; i++) {
-			Alumnos.add(new Alumnos());
+			Alumnos A=new Alumnos(this);
+			Alumnos.add(A);
 		}
 	}
 
 	private void CrearProfesores() {
 		for (int i = 0; i < CONSTANTES.Profesores; i++) {
-			Profesores P=new Profesores();
-			P.addCurso(this);
+			Profesores P=new Profesores(this);
 			Profesores.add(P);
 		}
 		
@@ -74,5 +70,12 @@ public class Curso extends SimState{
 		schedule.scheduleRepeating(a);
 	}
 	
+	public Continuous2D getYard() {
+		return yard;
+	}
+	
+	public void setYard(Continuous2D yard) {
+		this.yard = yard;
+	}
 	
 }

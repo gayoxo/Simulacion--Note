@@ -4,6 +4,7 @@ import java.util.Random;
 import sim.engine.SimState;
 import sim.engine.Steppable;
 import sim.field.continuous.Continuous2D;
+import sim.util.Double2D;
 
 
 public class Profesores implements Steppable {
@@ -13,14 +14,18 @@ public class Profesores implements Steppable {
 	private int Id;
 	private int Exigencia;
 	private ArrayList<Actividad> ActividadesMias;
-	private ArrayList<Curso> CursosPertenezco;
+	private Curso CursosPertenezco;
+	private Double2D Posicion;
 	
-	public Profesores() {
+	public Profesores(Curso e) {
+		
+	CursosPertenezco=e;	
 	Id=IDcounter++;
+	Posicion=new Double2D(0,Id);
 	Random R=new Random();
 	Exigencia= -2 + R.nextInt(CONSTANTES.ExigenciamediaVar);
 	ActividadesMias=new ArrayList<Actividad>();
-	CursosPertenezco=new ArrayList<Curso>();
+	
 	}
 	
 	@Override
@@ -31,9 +36,8 @@ public class Profesores implements Steppable {
 			ActividadesMias.add(A);
 			Curso.getActividades().add(A);
 			System.out.println("Creada Actividad por Profesor" + Id);
-			for (Curso C : CursosPertenezco) {
-				C.addschedule(A);	
-			}
+			CursosPertenezco.addschedule(A);	
+			
 		}
 	}
 	
@@ -41,8 +45,13 @@ public class Profesores implements Steppable {
 		ActividadesMias = actividadesMias;
 	}
 	
-	public void addCurso(Curso e)
-	{
-		CursosPertenezco.add(e);
+	
+	
+	public Double2D getPosicion() {
+		return Posicion;
+	}
+	
+	public Curso getCursosPertenezco() {
+		return CursosPertenezco;
 	}
 }
