@@ -21,7 +21,7 @@ MiCreador=profesores;
 
 	@Override
 	public void step(SimState arg0) {
-		// TODO Auto-generated method stub
+		System.out.println("Actividad:" + Id + " esta viva");
 		
 	}
 	

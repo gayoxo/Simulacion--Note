@@ -26,6 +26,7 @@ public class Curso extends SimState{
 		yard.clear();
 		Profesores=new ArrayList<Profesores>();
 		Alumnos=new ArrayList<Alumnos>();
+		Actividades=new ArrayList<Actividad>();
 		CrearProfesores();
 		CrearAlumnos();
 		for (Profesores P : Profesores) {
@@ -51,7 +52,9 @@ public class Curso extends SimState{
 
 	private void CrearProfesores() {
 		for (int i = 0; i < CONSTANTES.Profesores; i++) {
-			Profesores.add(new Profesores());
+			Profesores P=new Profesores();
+			P.addCurso(this);
+			Profesores.add(P);
 		}
 		
 	}
@@ -65,4 +68,11 @@ public class Curso extends SimState{
 	public static ArrayList<Actividad> getActividades() {
 		return Actividades;
 	}
+
+	public void addschedule(Actividad a) {
+		
+		schedule.scheduleRepeating(a);
+	}
+	
+	
 }
