@@ -13,7 +13,7 @@ public class Curso extends SimState{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Continuous2D yard = new Continuous2D(1.0,100,100);
+	public Continuous2D yard = new Continuous2D(1.0,50,50);
 	
 	private ArrayList<Alumnos> Alumnos;
 	private ArrayList<Profesores> Profesores;

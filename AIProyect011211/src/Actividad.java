@@ -28,7 +28,7 @@ Posicion=new Double2D(Cur.getYard().width*0.5,Id);
 
 	@Override
 	public void step(SimState arg0) {
-	//	System.out.println("Actividad:" + Id + " esta viva");
+		System.out.println("Actividad:" + Id + " esta viva");
 		
 	}
 	
