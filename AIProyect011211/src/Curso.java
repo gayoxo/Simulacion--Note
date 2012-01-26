@@ -13,44 +13,53 @@ public class Curso extends SimState{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Continuous2D yard = new Continuous2D(1.0,50,50);
+	public Continuous2D yard = new Continuous2D(1.0,CONSTANTES.XTablero,CONSTANTES.YTablero);
 	
-	private ArrayList<Alumnos> Alumnos;
-	private ArrayList<Profesores> Profesores;
-	private static ArrayList<Actividad> Actividades;
+	private static ArrayList<Alumnos> AlumnosArray;
+	private static ArrayList<Profesores> ProfesoresArray;
+	private static ArrayList<Actividad> ActividadesArray;
 	
 	@Override
 	public void start() {
 		// TODO Auto-generated method stub
 		super.start();
 		yard.clear();
-		Profesores=new ArrayList<Profesores>();
-		Alumnos=new ArrayList<Alumnos>();
-		Actividades=new ArrayList<Actividad>();
-		CrearProfesores();
+		Profesores.setIDcounter(0);
+		Alumnos.setConstantID(0);
+		Actividad.setIDcounter(0);
+		PosicionesActividades.clean();
+		Alumnos.setNumpositivo(0.0);
+		ProfesoresArray=new ArrayList<Profesores>();
+		AlumnosArray=new ArrayList<Alumnos>();
+		ActividadesArray=new ArrayList<Actividad>();
 		CrearAlumnos();
-		for (Profesores P : Profesores) {
-			yard.setObjectLocation(P,P.getPosicion());					
-			schedule.scheduleRepeating(P);
-		}
-		for (Alumnos A : Alumnos) {
+		//Necesitan los alumnos para saber la gente que ponen en cada actividad;
+		CrearProfesores();
+		
+		for (Alumnos A : AlumnosArray) {
 			yard.setObjectLocation(A,A.getPosicion());
 			schedule.scheduleRepeating(A);
 		}
+		for (Profesores P : ProfesoresArray) {
+			
+			yard.setObjectLocation(P,P.getPosicion());	
+			schedule.scheduleRepeating(P);
+		}
+		
 		
 		}
 
 	private void CrearAlumnos() {
 		for (int i = 0; i < CONSTANTES.Alumnos; i++) {
 			Alumnos A=new Alumnos(this);
-			Alumnos.add(A);
+			AlumnosArray.add(A);
 		}
 	}
 
 	private void CrearProfesores() {
 		for (int i = 0; i < CONSTANTES.Profesores; i++) {
 			Profesores P=new Profesores(this);
-			Profesores.add(P);
+			ProfesoresArray.add(P);
 		}
 		
 	}
@@ -62,7 +71,7 @@ public class Curso extends SimState{
 	}
 	
 	public static ArrayList<Actividad> getActividades() {
-		return Actividades;
+		return ActividadesArray;
 	}
 
 	public void addschedule(Actividad a) {
@@ -77,5 +86,14 @@ public class Curso extends SimState{
 	public void setYard(Continuous2D yard) {
 		this.yard = yard;
 	}
+	
+	public static ArrayList<Alumnos> getAlumnosArray() {
+		return AlumnosArray;
+	}
+	
+	public static ArrayList<Profesores> getProfesoresArray() {
+		return ProfesoresArray;
+	}
+	
 	
 }
