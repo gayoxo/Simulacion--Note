@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import sim.engine.SimState;
 import sim.engine.Steppable;
 import sim.field.continuous.Continuous2D;
+import sim.field.network.Network;
+import sim.util.Bag;
 import sim.util.Double2D;
 
 
@@ -18,6 +20,7 @@ public class Curso extends SimState{
 	private static ArrayList<Alumnos> AlumnosArray;
 	private static ArrayList<Profesores> ProfesoresArray;
 	private static ArrayList<Actividad> ActividadesArray;
+	public Network buddies = new Network(false);
 	
 	@Override
 	public void start() {
@@ -39,7 +42,9 @@ public class Curso extends SimState{
 		for (Alumnos A : AlumnosArray) {
 			yard.setObjectLocation(A,A.getPosicion());
 			schedule.scheduleRepeating(A);
+			buddies.addNode(A);
 		}
+		generarAmistades();
 		for (Profesores P : ProfesoresArray) {
 			
 			yard.setObjectLocation(P,P.getPosicion());	
@@ -48,6 +53,29 @@ public class Curso extends SimState{
 		
 		
 		}
+
+	private void generarAmistades() {
+		Bag Alumnos = buddies.getAllNodes();
+		for(int i = 0; i < Alumnos.size(); i++) {
+			Object Alumno = Alumnos.get(i);
+		// who does he like?
+			Object AlumnoB = null;
+			do
+				AlumnoB =Alumnos.get(random.nextInt(CONSTANTES.Alumnos));
+			while (Alumno == AlumnoB);
+			
+			double buddiness = random.nextInt(2);
+				buddies.addEdge(Alumno, AlumnoB, new Double(buddiness));
+		// who does he dislike?
+				do
+					AlumnoB =Alumnos.get(random.nextInt(CONSTANTES.Alumnos));
+				while (Alumno == AlumnoB);
+					buddiness = random.nextInt(2);
+					buddies.addEdge(Alumno, AlumnoB, new Double(-buddiness));
+		}
+
+		
+	}
 
 	private void CrearAlumnos() {
 		for (int i = 0; i < CONSTANTES.Alumnos; i++) {
@@ -64,11 +92,6 @@ public class Curso extends SimState{
 		
 	}
 	
-	public static void main(String[] args) {
-			doLoop(Curso.class,args);
-			System. exit(0);
-			
-	}
 	
 	public static ArrayList<Actividad> getActividades() {
 		return ActividadesArray;

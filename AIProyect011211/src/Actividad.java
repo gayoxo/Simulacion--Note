@@ -10,8 +10,10 @@ public class Actividad implements Steppable{
 	
 	private static int IDcounter=0;
 	private int Id;
-	private int Completitud;
 	private int Nota;
+	private int AnotacionesComple;
+	private int Anotaciones;
+	private int ArbolSemantico;
 	private int ciclosLimite;
 	private int cicloActual;
 	private String Nombre;
@@ -26,7 +28,9 @@ public class Actividad implements Steppable{
 Id=IDcounter++;
 Cur=profesores.getCursosPertenezco();
 Profesor=profesores.getName();
-Completitud=0;
+AnotacionesComple=0;
+Anotaciones=0;
+ArbolSemantico=0;
 Nota=0;
 ciclosLimite=CiclosLimite;
 cicloActual=0;
@@ -81,7 +85,7 @@ Cur.getYard().setObjectLocation(this, Posicion);
 	}
 	
 	public int getCompletitud() {
-		return Completitud;
+		return AnotacionesComple;
 	}
 	
 	public void setNota(int nota) {
@@ -119,6 +123,7 @@ Cur.getYard().setObjectLocation(this, Posicion);
 			SB.append(".");
 			}
 		System.out.println("Los Alumnos: " + SB.toString());
+		System.out.println("Generaron: " + Anotaciones + " Anotaciones y " + ArbolSemantico +" Nodos en el Arbol Semantico");
 		System.out.println("Obtuvieron la nota de " + Nota);
 		//System.out.println(" El Alumno " + Id + " ha obtenido la puntuacion de " + A.getNota() + " en la Actividad del Libro \"" + A.getNombre() + "\" esforzandose para un " + Esfuerzo +".");
 	//	System.out.println("///////////////////////");
@@ -130,7 +135,13 @@ Cur.getYard().setObjectLocation(this, Posicion);
 	
 	public void Trabajar(int cant)
 	{
-		Completitud=Completitud+cant;
+		if (cant>1)
+			{
+			ArbolSemantico++;
+			AnotacionesComple++;
+			}
+		Anotaciones=Anotaciones+1+(ArbolSemantico/5);
+		AnotacionesComple++;
 	}
 	
 	public String getNombre() {

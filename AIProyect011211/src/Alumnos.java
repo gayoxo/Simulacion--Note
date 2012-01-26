@@ -3,7 +3,10 @@ import java.util.Random;
 
 import sim.engine.SimState;
 import sim.engine.Steppable;
+import sim.field.network.Edge;
+import sim.util.Bag;
 import sim.util.Double2D;
+import sim.util.MutableDouble2D;
 
 
 public class Alumnos implements Steppable{
@@ -63,7 +66,11 @@ public class Alumnos implements Steppable{
 						{
 						Double2D ActPos=new Double2D(A.getPosicion().getX()+1,A.getPosicion().getY());
 						Cur.yard.setObjectLocation(this, ActPos);
-						A.Trabajar(Productividad);
+						int Extra=TrabajoEnEquipo(A);
+						if (Extra>0)
+							A.Trabajar(Productividad + Extra);
+						else 
+							A.Trabajar(Productividad);
 						Energia=Energia-Productividad;
 						}
 //					else if (Energia<=0) 
@@ -82,6 +89,27 @@ public class Alumnos implements Steppable{
 		}
 	}
 	
+	private int TrabajoEnEquipo(Actividad a) {
+		MutableDouble2D forceVector = new MutableDouble2D();
+		Bag out = Cur.buddies.getEdges(this, null);
+		int len = out.size();
+		int Salida=0;
+		for(int buddy = 0 ; buddy < len; buddy++) {
+			Edge e = (Edge)(out.get(buddy));
+			double buddiness = ((Double)(e.info)).doubleValue();
+			Alumnos TO=(Alumnos)e.getTo();
+			if (a.getListaAlumnos().contains(TO)){
+				Salida=Salida+(int)buddiness;
+				//System.out.println("Amigos " + (Alumnos)e.getTo() + (Alumnos)e.getFrom());
+			}
+				
+			
+		}
+		return Salida;
+	}
+
+
+
 	private Actividad GetActividadCandidata() {
 		Actividad Menor=null;
 		for (Actividad A : Implicado) {
