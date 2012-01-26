@@ -123,7 +123,7 @@ Cur.getYard().setObjectLocation(this, Posicion);
 			SB.append(".");
 			}
 		System.out.println("Los Alumnos: " + SB.toString());
-		System.out.println("Generaron: " + Anotaciones + " Anotaciones y " + ArbolSemantico +" Nodos en el Arbol Semantico");
+		System.out.println("Generaron: " + Anotaciones + " Anotaciones y " + ArbolSemantico +" Nodos en el Grafo Semantico");
 		System.out.println("Obtuvieron la nota de " + Nota);
 		//System.out.println(" El Alumno " + Id + " ha obtenido la puntuacion de " + A.getNota() + " en la Actividad del Libro \"" + A.getNombre() + "\" esforzandose para un " + Esfuerzo +".");
 	//	System.out.println("///////////////////////");

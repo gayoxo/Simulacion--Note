@@ -27,7 +27,7 @@ public class Alumnos implements Steppable{
 	
 	public Alumnos(Curso curso) {
 		Name=CONSTANTES.GetNombreAleatorioNombre();
-		Energia=((new Random()).nextInt(51))+50;
+		Energia=((new Random()).nextInt(71))+50;
 		Productividad=((new Random()).nextInt(2))+1;
 		Esfuerzo=((new Random()).nextInt(6))+5;
 		
