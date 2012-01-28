@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Point;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -70,12 +71,20 @@ public class StudentsWithUI extends GUIState {
 	
 	public void init(Controller c){
 		super.init(c);
-		display = new Display2D(300,300,this);
+		display = new Display2D(600,400,this);
 		display.setClipping(false);
 		displayFrame = display.createFrame();
 		displayFrame.setTitle("Simulacion de anotador");
 		c.registerFrame(displayFrame);
 		displayFrame.setVisible(true);
+		Consola consola=Consola.getInstance();
+		Point Ori = displayFrame.getLocation();
+		Double x=Ori.getX();
+		Double y=Ori.getY()+displayFrame.getHeight();
+		Point Des=new Point(x.intValue(), y.intValue());
+		consola.setLocation(Des);
+		consola.setVisible(true);
+		c.registerFrame(consola);
 		display.attach( yardPortrayal, "Yard" );
 		}
 	

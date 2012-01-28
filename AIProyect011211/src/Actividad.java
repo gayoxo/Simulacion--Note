@@ -103,9 +103,12 @@ Cur.getYard().setObjectLocation(this, Posicion);
 	public void setFinalizada()
 	{
 		State=Estado.Acabada;
-		System.out.println("///////////////////////");
-		System.out.println("En La actividad del libro : " + getNombre() + ".");
-		System.out.println("Creada por el Profesor: " + Profesor + ".");
+		//System.out.println("///////////////////////");
+		Consola.getInstance().getTextArea().append("///////////////////////\n");
+		//System.out.println("En La actividad del libro : " + getNombre() + ".");
+		Consola.getInstance().getTextArea().append("En La actividad del libro : " + getNombre() + ".\n");
+		//System.out.println("Creada por el Profesor: " + Profesor + ".");
+		Consola.getInstance().getTextArea().append("Creada por el Profesor: " + Profesor + ".\n");
 		StringBuffer SB=new StringBuffer();
 		for (int i = 0; i < ListaAlumnos.size()-1; i++) {
 			SB.append(ListaAlumnos.get(i).getName());
@@ -122,9 +125,12 @@ Cur.getYard().setObjectLocation(this, Posicion);
 //			SB.append(").");
 			SB.append(".");
 			}
-		System.out.println("Los Alumnos: " + SB.toString());
-		System.out.println("Generaron: " + Anotaciones + " Anotaciones y " + ArbolSemantico +" Nodos en el Grafo Semantico");
-		System.out.println("Obtuvieron la nota de " + Nota);
+		//System.out.println("Los Alumnos: " + SB.toString());
+		Consola.getInstance().getTextArea().append("Los Alumnos: " + SB.toString() + ".\n");
+		//System.out.println("Generaron: " + Anotaciones + " Anotaciones y " + ArbolSemantico +" Nodos en el Grafo Semantico");
+		Consola.getInstance().getTextArea().append("Generaron: " + Anotaciones + " Anotaciones y " + ArbolSemantico +" Nodos en el Grafo Semantico.\n");
+		//System.out.println("Obtuvieron la nota de " + Nota);
+		Consola.getInstance().getTextArea().append("Obtuvieron la nota de " + Nota + ".\n");
 		//System.out.println(" El Alumno " + Id + " ha obtenido la puntuacion de " + A.getNota() + " en la Actividad del Libro \"" + A.getNombre() + "\" esforzandose para un " + Esfuerzo +".");
 	//	System.out.println("///////////////////////");
 	}
