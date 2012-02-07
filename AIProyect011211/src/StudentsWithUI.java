@@ -90,6 +90,7 @@ public class StudentsWithUI extends GUIState {
 	
 	public void start(){
 		super.start();
+		Configuracion.Bloquear();
 		setupPortrayals();
 		}
 		public void load(SimState state){
@@ -104,6 +105,7 @@ public class StudentsWithUI extends GUIState {
 		}
 		
 		
+	
 		public void setupPortrayals(){
 			Curso students = (Curso) state;
 			// tell the portrayals what to portray and how to portray them
