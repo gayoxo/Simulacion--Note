@@ -92,8 +92,8 @@ public class StudentsWithUI extends GUIState {
 		}
 	
 	public void start(){
-		super.start();
 		Configuracion.Bloquear();
+		super.start();	
 		setupPortrayals();
 		}
 		public void load(SimState state){
