@@ -50,4 +50,12 @@ public class PosicionesActividades {
 	{
 		Array[A]=false;
 	}
+	
+	public void restart()
+	{
+		
+		Array=new boolean[CONSTANTES.YTablero];
+		for (int i = 0; i < Array.length; i++) 
+			Array[i]=false;
+	}
 }

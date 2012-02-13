@@ -33,7 +33,8 @@ public class Profesores implements Steppable {
 	Id=IDcounter++;
 	actividadesCompletas=0;
 	Random R=new Random();
-	Exigencia= -2 + R.nextInt(CONSTANTES.ExigenciamediaVar);
+	int ExigenciaMin=CONSTANTES.ExigenciamediaVar -1 - (CONSTANTES.ExigenciamediaVar/2);
+	Exigencia= -ExigenciaMin + R.nextInt(CONSTANTES.ExigenciamediaVar);
 	ActividadesMias=new ArrayList<Actividad>();
 	ActividadesActivas=new ArrayList<Actividad>();
 	if (positivo)
@@ -158,5 +159,9 @@ public class Profesores implements Steppable {
 	public String getName() {
 		// TODO Auto-generated method stub
 		return Name;
+	}
+	
+	public static void setNumpositivo(double numpositivo) {
+		Profesores.numpositivo = numpositivo;
 	}
 }

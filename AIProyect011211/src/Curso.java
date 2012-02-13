@@ -28,10 +28,12 @@ public class Curso extends SimState{
 		super.start();
 		yard.clear();
 		Profesores.setIDcounter(0);
+		Profesores.setNumpositivo(0);
 		Alumnos.setConstantID(0);
+		Alumnos.setNumpositivo(0.0);
 		Actividad.setIDcounter(0);
 		PosicionesActividades.clean();
-		Alumnos.setNumpositivo(0.0);
+		PosicionesActividades.getInstance().restart();
 		ProfesoresArray=new ArrayList<Profesores>();
 		AlumnosArray=new ArrayList<Alumnos>();
 		ActividadesArray=new ArrayList<Actividad>();
@@ -85,6 +87,7 @@ public class Curso extends SimState{
 	}
 
 	private void CrearProfesores() {
+		
 		for (int i = 0; i < CONSTANTES.Profesores; i++) {
 			Profesores P=new Profesores(this);
 			ProfesoresArray.add(P);

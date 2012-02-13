@@ -85,6 +85,9 @@ public class StudentsWithUI extends GUIState {
 		consola.setLocation(Des);
 		consola.setVisible(true);
 		c.registerFrame(consola);
+		Configuracion configuracion=new Configuracion();
+		configuracion.setVisible(true);
+		c.registerFrame(configuracion);
 		display.attach( yardPortrayal, "Yard" );
 		}
 	
