@@ -92,10 +92,12 @@ public class StudentsWithUI extends GUIState {
 		}
 	
 	public void start(){
-		Configuracion.Bloquear();
+		if (Configuracion.Bloquear())
+		{
 		super.start();	
 		setupPortrayals();
 		}
+	}
 		public void load(SimState state){
 		super.load(state);
 		setupPortrayals();
@@ -106,7 +108,7 @@ public class StudentsWithUI extends GUIState {
 		displayFrame = null;
 		display = null;
 		}
-		
+	
 		
 	
 		public void setupPortrayals(){
@@ -130,6 +132,8 @@ public class StudentsWithUI extends GUIState {
 							paint=Color.YELLOW;
 						else if (A.getEstado()==Estado.Activa)
 							paint=Color.GREEN;
+						else if (A.getEstado()==Estado.Terminada)
+							paint=Color.PINK;
 						else if (A.getEstado()==Estado.RecienAcabada)
 							paint=Color.RED;
 						else paint=Color.RED;

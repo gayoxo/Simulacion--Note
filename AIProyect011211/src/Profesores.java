@@ -117,7 +117,10 @@ public class Profesores implements Steppable {
 						Double2D ActPos=new Double2D(A.getPosicion().getX()-1,A.getPosicion().getY());
 						CursosPertenezco.yard.setObjectLocation(this, ActPos);
 						int notaFin=A.getCompletitud()/10;
-						if (notaFin>10) notaFin=10;
+						if (notaFin>10) {
+							A.setState(Estado.Terminada);
+							notaFin=10;
+						}
 							if (notaFin<0) notaFin=0;
 							A.setNota(notaFin);
 						}

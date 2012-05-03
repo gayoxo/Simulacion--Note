@@ -50,8 +50,7 @@ Cur.getYard().setObjectLocation(this, Posicion);
 	@Override
 	public void step(SimState arg0) {
 		
-		if (State==Estado.Activa){
-			if (cicloActual<ciclosLimite)
+		if (cicloActual<ciclosLimite)
 			{
 				cicloActual++;
 			}
@@ -59,7 +58,7 @@ Cur.getYard().setObjectLocation(this, Posicion);
 			{
 				State=Estado.RecienAcabada;
 			}
-		}
+
 	}
 	
 	
@@ -156,5 +155,9 @@ Cur.getYard().setObjectLocation(this, Posicion);
 	
 	public ArrayList<Alumnos> getListaAlumnos() {
 		return ListaAlumnos;
+	}
+	
+	public void setState(Estado state) {
+		State = state;
 	}
 }

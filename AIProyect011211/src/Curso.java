@@ -26,6 +26,7 @@ public class Curso extends SimState{
 	public void start() {
 		// TODO Auto-generated method stub
 		super.start();
+		yard = new Continuous2D(1.0,CONSTANTES.XTablero,CONSTANTES.YTablero);
 		yard.clear();
 		Profesores.setIDcounter(0);
 		Profesores.setNumpositivo(0);

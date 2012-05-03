@@ -1,2 +1,2 @@
 
-	public enum Estado {SinAtributos,Activa,RecienAcabada,Acabada};
+	public enum Estado {SinAtributos,Activa,Terminada,RecienAcabada,Acabada};

@@ -6,6 +6,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollBar;
 import java.awt.GridLayout;
+
+import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
@@ -24,13 +26,13 @@ public class Configuracion extends JFrame {
 	private static PanelSlide ActividadesP;
 	private static PanelSlide ExigenciamediaVarP;
 	private static PanelSlide YTableroP;
-	private static PanelSlide XTableroP;
+//	private static PanelSlide XTableroP;
 	public static int Profesores=6;
 	public static int ExigenciamediaVar=5;
 	public static int Alumnos=35;
 	public static int Actividades=7;
 	public static int YTablero=50;
-	public static int XTablero=50;
+//	public static int XTablero=50;
 
 	/**
 	 * Launch the application.
@@ -68,10 +70,10 @@ public class Configuracion extends JFrame {
 		contentPane.add(panel_6, BorderLayout.WEST);
 		panel_6.setLayout(new GridLayout(7, 0, 0, 0));
 		
-		JLabel label_1 = new JLabel("   X    ");
-		panel_6.add(label_1);
+//		JLabel label_1 = new JLabel("   X    ");
+//		panel_6.add(label_1);
 		
-		JLabel label_2 = new JLabel("   Y    ");
+		JLabel label_2 = new JLabel("   Zona de Trabajo    ");
 		panel_6.add(label_2);
 		
 		Component verticalStrut = Box.createVerticalStrut(20);
@@ -93,22 +95,22 @@ public class Configuracion extends JFrame {
 		contentPane.add(panel_7, BorderLayout.CENTER);
 		panel_7.setLayout(new GridLayout(7, 0, 0, 0));
 		
-		XTableroP = new PanelSlide(0, 300, XTablero);
-		panel_7.add(XTableroP);
+//		XTableroP = new PanelSlide(0, 300, XTablero);
+//		panel_7.add(XTableroP);
 		
-		YTableroP = new PanelSlide(0, 300, YTablero);
+		YTableroP = new PanelSlide(0, 150, YTablero);
 		panel_7.add(YTableroP);
 		
 		Component verticalStrut_1 = Box.createVerticalStrut(20);
 		panel_7.add(verticalStrut_1);
 		
-		 AlumnosP = new PanelSlide(0, 300, Alumnos);
+		 AlumnosP = new PanelSlide(0, 150, Alumnos);
 		panel_7.add(AlumnosP);
 		
-		 ProfesoresP = new PanelSlide(0, 300, Profesores);
+		 ProfesoresP = new PanelSlide(0, 150, Profesores);
 		panel_7.add(ProfesoresP);
 		
-		 ActividadesP = new PanelSlide(0, 300, Actividades);
+		 ActividadesP = new PanelSlide(0, 150, Actividades);
 		panel_7.add(ActividadesP);
 		
 		 ExigenciamediaVarP = new PanelSlide(0, 5, ExigenciamediaVar - 1 - (ExigenciamediaVar/2));
@@ -116,20 +118,42 @@ public class Configuracion extends JFrame {
 		
 		}
 
-	public static void Bloquear() {
-		int X = XTableroP.getValue();
+	public static boolean Bloquear() {
+//		int X = XTableroP.getValue();
 		int Y = YTableroP.getValue();
 		int AlumnosT = AlumnosP.getValue();
 		int ProfesoresT = ProfesoresP.getValue();
 		int ActividadesT = ActividadesP.getValue();
 		int ExigenciamediaVarT  = ExigenciamediaVarP.getValue()* 2 + 1;
 		
-		CONSTANTES.setActividades(Actividades);
-		CONSTANTES.setAlumnos(Alumnos);
-		CONSTANTES.setExigenciamediaVar(ExigenciamediaVar);
-		CONSTANTES.setProfesores(Profesores);
-		CONSTANTES.setXTablero(X);
+		
+		//Tests
+		
+		if (AlumnosT > Y){
+			JOptionPane.showMessageDialog(null, "El numero de alumnos es excede al tamaño del panel de la Zona de Trabajo.");
+			return false;
+		}
+		if (ProfesoresT > Y){
+			JOptionPane.showMessageDialog(null, "El numero de profesores es excede al tamaño del panel de la Zona de Trabajo.");
+			return false;
+		}
+		if ((ActividadesT*ProfesoresT) > Y){
+			JOptionPane.showMessageDialog(null, "El numero de actividades potencialmente activas (Actividades * Profesores) excede al tamaño del panel de la Zona de Trabajo.");
+			return false;
+		}
+
+		
+		
+		
 		CONSTANTES.setYTablero(Y);
+		CONSTANTES.setActividades(ActividadesT);
+		CONSTANTES.setAlumnos(AlumnosT);
+		CONSTANTES.setProfesores(ProfesoresT);
+		CONSTANTES.setExigenciamediaVar(ExigenciamediaVarT);
+//		CONSTANTES.setXTablero(X);
+		CONSTANTES.setYTablero(Y);
+		
+		return true;
 		
 	}
 
