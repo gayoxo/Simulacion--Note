@@ -107,10 +107,10 @@ public class Configuracion extends JFrame {
 		 AlumnosP = new PanelSlide(0, 150, Alumnos);
 		panel_7.add(AlumnosP);
 		
-		 ProfesoresP = new PanelSlide(0, 150, Profesores);
+		 ProfesoresP = new PanelSlide(0, 10, Profesores);
 		panel_7.add(ProfesoresP);
 		
-		 ActividadesP = new PanelSlide(0, 150, Actividades);
+		 ActividadesP = new PanelSlide(0, 40, Actividades);
 		panel_7.add(ActividadesP);
 		
 		 ExigenciamediaVarP = new PanelSlide(0, 5, ExigenciamediaVar - 1 - (ExigenciamediaVar/2));

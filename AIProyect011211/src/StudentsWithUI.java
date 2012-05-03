@@ -31,7 +31,7 @@ public class StudentsWithUI extends GUIState {
 
 	private static ArrayList<String> CargaNombres() {
 		ArrayList<String> Salida = new ArrayList<String>();
-		File archivo=new File("Nombres.txt");
+		File archivo=new File("src\\Nombres.txt");
 		try {
 		BufferedReader reader = new BufferedReader(new FileReader(archivo));
 		String linea = reader.readLine();
@@ -45,7 +45,7 @@ public class StudentsWithUI extends GUIState {
 
 	private static ArrayList<String> CargaLibros() {
 		ArrayList<String> Salida = new ArrayList<String>();
-		File archivo=new File("Libros.txt");
+		File archivo=new File("src\\Libros.txt");
 		try {
 		BufferedReader reader = new BufferedReader(new FileReader(archivo));
 		String linea = reader.readLine();
